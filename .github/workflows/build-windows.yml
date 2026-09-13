@@ -12,7 +12,7 @@ on:
 jobs:
   build:
     name: Build Windows x64
-    runs-on: windows-latest
+    runs-on: windows-2022
 
     steps:
       - name: Prepare directories
@@ -46,15 +46,43 @@ jobs:
           path: |
             ${{ env.TBUILD }}\ThirdParty
             ${{ env.LibrariesPath }}
-          key: win-x64-libs-${{ hashFiles('**/prepare.py') }}
+          key: win2022-x64-libs-${{ hashFiles('**/prepare.py') }}
           restore-keys: |
-            win-x64-libs-
+            win2022-x64-libs-
 
       - name: Prepare Third-Party Libraries
         shell: cmd
         run: |
           cd "%TBUILD%\WildGram"
           call Telegram\build\prepare\win.bat skip-release silent
+
+      - name: Save Libraries Cache (Explicit)
+        uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: |
+            ${{ env.TBUILD }}\ThirdParty
+            ${{ env.LibrariesPath }}
+          key: win2022-x64-libs-${{ hashFiles('**/prepare.py') }}
+
+      - name: Apply CMake MSVC Patches
+        shell: pwsh
+        run: |
+          cd "$env:TBUILD\WildGram"
+          $diff = @"
+          diff --git a/variables.cmake b/variables.cmake
+          index a1e77b7..9f816cb 100644
+          --- a/variables.cmake
+          +++ b/variables.cmake
+          @@ -28,4 +28,4 @@ set(CMAKE_CXX_SCAN_FOR_MODULES OFF CACHE BOOL "")
+           set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT
+          -    "`$<$<CONFIG:Debug>:ProgramDatabase>`$<$<NOT:`$<CONFIG:Debug>>:Embedded>"
+          -    CACHE STRING "")
+          +    "`$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>`$<$<CONFIG:Release,MinSizeRel>:Embedded>"
+          +    CACHE STRING "" FORCE)
+           set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded`$<$<CONFIG:Debug>:Debug>" CACHE STRING "")
+          "@
+          $diff | git -C cmake apply -v --ignore-whitespace - || true
 
       - name: Configure CMake
         shell: cmd
