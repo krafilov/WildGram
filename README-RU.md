@@ -1,6 +1,6 @@
-# AyuGram
+# WildGram Desktop
 
-![AyuGram Лого](.github/AyuGram.png) ![AyuChan](.github/AyuChan.png)
+![WildGram Лого](.github/WildGram.png) ![AyuChan](.github/AyuChan.png)
 
 [ [English](README.md)  | Русский ]
 
@@ -23,7 +23,7 @@
     <table>
       <tr>
         <td><img src='.github/demos/demo1.png' width='268' alt='Preferences'></td>
-        <td><img src='.github/demos/demo2.png' width='268' alt='AyuGram Options'></td>
+        <td><img src='.github/demos/demo2.png' width='268' alt='WildGram Options'></td>
         <td><img src='.github/demos/demo3.png' width='268' alt='Message Filters'></td>
       </tr>
       <tr>
@@ -40,13 +40,13 @@
 
 #### Официальная версия
 
-Вы можете скачать готовый бинарный файл со вкладки [Releases](https://github.com/AyuGram/AyuGramDesktop/releases) или из
-[Телеграм канала](https://t.me/AyuGramReleases).
+Вы можете скачать готовый бинарный файл со вкладки [Releases](https://github.com/WildGram/WildGramDesktop/releases) или из
+[Телеграм канала](https://t.me/WildGramReleases).
 
 #### Winget
 
 ```bash
-winget install RadolynLabs.AyuGramDesktop
+winget install RadolynLabs.WildGramDesktop
 ```
 
 #### Scoop
@@ -58,14 +58,14 @@ scoop install ayugram
 
 #### Сборка вручную
 
-Следуйте [официальному руководству](https://github.com/AyuGram/AyuGramDesktop/blob/dev/docs/building-win-x64.md), если
-вы хотите собрать AyuGram сами.
+Следуйте [официальному руководству](https://github.com/WildGram/WildGramDesktop/blob/dev/docs/building-win-x64.md), если
+вы хотите собрать WildGram сами.
 
 ### macOS
 
 #### Официальная версия
 
-Вы можете скачать подписанный пакет со вкладки [Releases](https://github.com/AyuGram/AyuGramDesktop/releases).
+Вы можете скачать подписанный пакет со вкладки [Releases](https://github.com/WildGram/WildGramDesktop/releases).
 
 #### Homebrew
 
@@ -120,13 +120,13 @@ dnf install ayugram-desktop
 
 ### Любой другой Линукс дистрибутив
 
-Flatpak: https://github.com/0FL01/AyuGramDesktop-flatpak
+Flatpak: https://github.com/0FL01/WildGramDesktop-flatpak
 
-Или следуйте [официальному руководству](https://github.com/AyuGram/AyuGramDesktop/blob/dev/docs/building-linux.md).
+Или следуйте [официальному руководству](https://github.com/WildGram/WildGramDesktop/blob/dev/docs/building-linux.md).
 
 ## Пожертвования
 
-Вам нравится использовать **AyuGram**? Оставьте нам чаевые!
+Вам нравится использовать **WildGram**? Оставьте нам чаевые!
 
 [Здесь доступные варианты.](https://docs.ayugram.one/donate/)
 
