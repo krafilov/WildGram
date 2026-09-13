@@ -1,0 +1,84 @@
+name: Build WildGram Desktop (Windows x64)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "dev" ]
+    paths-ignore:
+      - 'docs/**'
+      - '**.md'
+      - '.github/scripts/**'
+
+jobs:
+  build:
+    name: Build Windows x64
+    runs-on: windows-latest
+
+    steps:
+      - name: Prepare directories
+        shell: cmd
+        run: |
+          mkdir "%userprofile%\TBuild\Libraries" 2>nul
+          mklink /d "%GITHUB_WORKSPACE%\TBuild" "%userprofile%\TBuild"
+          echo TBUILD=%GITHUB_WORKSPACE%\TBuild>>%GITHUB_ENV%
+          echo LibrariesPath=%GITHUB_WORKSPACE%\TBuild\Libraries\win64>>%GITHUB_ENV%
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 1
+          path: ${{ env.TBUILD }}\WildGram
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Setup MSVC environment
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
+      - name: Restore Libraries Cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ env.TBUILD }}\ThirdParty
+            ${{ env.LibrariesPath }}
+          key: win-x64-libs-${{ hashFiles('**/prepare.py') }}
+          restore-keys: |
+            win-x64-libs-
+
+      - name: Prepare Third-Party Libraries
+        shell: cmd
+        run: |
+          cd "%TBUILD%\WildGram"
+          call Telegram\build\prepare\win.bat skip-release silent
+
+      - name: Configure CMake
+        shell: cmd
+        run: |
+          cd "%TBUILD%\WildGram\Telegram"
+          call configure.bat x64 -D TDESKTOP_API_ID=2040 -D TDESKTOP_API_HASH=b18441a1ff607e10a989891a5462e627 -D CMAKE_CONFIGURATION_TYPES=Release
+
+      - name: Build WildGram
+        shell: cmd
+        run: |
+          cd "%TBUILD%\WildGram"
+          cmake --build out --config Release --parallel
+
+      - name: Find and Package Binary
+        shell: pwsh
+        run: |
+          $outPath = Join-Path $env:TBUILD "WildGram\out\Release"
+          Write-Host "Checking binaries in: $outPath"
+          Get-ChildItem -Path $outPath -Recurse -Filter "*.exe" | Select-Object FullName, Length
+
+      - name: Upload WildGram Release Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: WildGram-Windows-x64
+          path: |
+            ${{ env.TBUILD }}/WildGram/out/Release/*.exe
+            ${{ env.TBUILD }}/WildGram/out/Release/*.dll
