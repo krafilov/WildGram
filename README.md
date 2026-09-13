@@ -1,6 +1,6 @@
-# AyuGram
+# WildGram Desktop
 
-![AyuGram Logo](.github/AyuGram.png) ![AyuChan](.github/AyuChan.png)
+![WildGram Logo](.github/WildGram.png) ![AyuChan](.github/AyuChan.png)
 
 [ English  |   [Русский](README-RU.md) ]
 
@@ -24,7 +24,7 @@ And many more. Check out our [Documentation](https://docs.ayugram.one/desktop/).
     <table>
       <tr>
         <td><img src='.github/demos/demo1.png' width='268' alt='Preferences'></td>
-        <td><img src='.github/demos/demo2.png' width='268' alt='AyuGram Options'></td>
+        <td><img src='.github/demos/demo2.png' width='268' alt='WildGram Options'></td>
         <td><img src='.github/demos/demo3.png' width='268' alt='Message Filters'></td>
       </tr>
       <tr>
@@ -41,13 +41,13 @@ And many more. Check out our [Documentation](https://docs.ayugram.one/desktop/).
 
 #### Official
 
-You can download prebuilt Windows binary from [Releases tab](https://github.com/AyuGram/AyuGramDesktop/releases) or from
-the [Telegram channel](https://t.me/AyuGramReleases).
+You can download prebuilt Windows binary from [Releases tab](https://github.com/WildGram/WildGramDesktop/releases) or from
+the [Telegram channel](https://t.me/WildGramReleases).
 
 #### Winget
 
 ```bash
-winget install RadolynLabs.AyuGramDesktop
+winget install RadolynLabs.WildGramDesktop
 ```
 
 #### Scoop
@@ -59,14 +59,14 @@ scoop install ayugram
 
 #### Self-built
 
-Follow [official guide](https://github.com/AyuGram/AyuGramDesktop/blob/dev/docs/building-win-x64.md) if you want to
+Follow [official guide](https://github.com/WildGram/WildGramDesktop/blob/dev/docs/building-win-x64.md) if you want to
 build by yourself.
 
 ### macOS
 
 #### Official
 
-You can download prebuilt macOS package from [Releases tab](https://github.com/AyuGram/AyuGramDesktop/releases).
+You can download prebuilt macOS package from [Releases tab](https://github.com/WildGram/WildGramDesktop/releases).
 
 #### Homebrew
 
@@ -121,13 +121,13 @@ dnf install ayugram-desktop
 
 ### Any other Linux distro
 
-Flatpak: https://github.com/0FL01/AyuGramDesktop-flatpak
+Flatpak: https://github.com/0FL01/WildGramDesktop-flatpak
 
-Or follow the [official guide](https://github.com/AyuGram/AyuGramDesktop/blob/dev/docs/building-linux.md).
+Or follow the [official guide](https://github.com/WildGram/WildGramDesktop/blob/dev/docs/building-linux.md).
 
 ## Donation
 
-Enjoy using **AyuGram**? Consider sending us a tip!
+Enjoy using **WildGram**? Consider sending us a tip!
 
 [Here's available methods.](https://docs.ayugram.one/donate/)
 
